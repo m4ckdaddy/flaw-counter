@@ -8,9 +8,10 @@ import argparse
 import datetime
 
 json_data_template = {
-    "scan_type": ["Static Analysis", "Dynamic Analysis", "Manual Analysis", "SCA"],
+    "scan_type": ["Static Analysis"],
     "policy_sandbox": "Policy",
     "report_type": "findings",
+    "severity": [3,4,5],
     "last_updated_start_date": "",
     "last_updated_end_date": ""
 }
@@ -80,7 +81,7 @@ def get_report_results(report_id, current_start_date, end_date, directory):
         status = report_data['_embedded']['status']
         if status == "COMPLETED":
             print("Veracode report completed. Saving it to a file...")
-            output_file = f'veracode_data_dump {current_start_date.strftime("%Y-%m-%d")} to {end_date.strftime("%Y-%m-%d")}.csv'
+            output_file = f'veracode_data_dump.csv'
             save_report_to_csv(os.path.join(directory, output_file), report_data)
             break
         elif status == "PROCESSING":

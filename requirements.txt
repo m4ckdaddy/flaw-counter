@@ -1,2 +1,0 @@
-requests>=2.21.0
-veracode-api-signing>=19.9.0
